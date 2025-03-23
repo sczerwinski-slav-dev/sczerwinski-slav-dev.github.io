@@ -1,3 +1,5 @@
+import Image from './Image.tsx'
+
 interface Post {
   id: string
   title: string
@@ -7,7 +9,7 @@ interface Post {
   draft: boolean
   categories: string[]
   tags: string[]
-  thumbnail: string | null
+  image: Image | null
   url: string
 }
 

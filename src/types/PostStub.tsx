@@ -1,3 +1,5 @@
+import Image from './Image.tsx'
+
 interface PostStub {
   id: string
   title: string
@@ -6,7 +8,7 @@ interface PostStub {
   draft: boolean
   categories: string[]
   tags: string[]
-  thumbnail: string | null
+  image: Image | null
   url: string
 }
 

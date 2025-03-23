@@ -1,4 +1,3 @@
-import {baseUrl, imagesPath} from '../../config/blob.tsx'
 import Card from '@mui/material/Card'
 import CardActionArea from '@mui/material/CardActionArea'
 import CardContent from '@mui/material/CardContent'
@@ -9,6 +8,7 @@ import PostStub from '../../types/PostStub.tsx'
 import ReactMarkdown from 'react-markdown'
 import Typography from '@mui/material/Typography'
 import {formatDate} from '../../utils/date.tsx'
+import {getThumbnailUrl} from '../../utils/images.tsx'
 import {postsPath} from '../../config/site.tsx'
 
 interface PostCardProps {
@@ -23,7 +23,7 @@ function PostCard(props: PostCardProps) {
       <CardActionArea component={NavLink} to={`/${postsPath}/${post.id}`}>
         <CardMedia
           component='img'
-          image={`${baseUrl}${imagesPath}/${post.thumbnail ?? 'no_thumbnail.png'}`}
+          image={getThumbnailUrl(post.image)}
           alt={post.title}
         />
         <CardContent>
