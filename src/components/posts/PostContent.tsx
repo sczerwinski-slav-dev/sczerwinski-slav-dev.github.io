@@ -7,8 +7,8 @@ import PostHero from './PostHero.tsx'
 import PostSkeleton from '../posts/PostSkeleton.tsx'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
+import {fetchPost} from '../../api/posts.tsx'
 import {formatDate} from '../../utils/date.tsx'
-import {getPost} from '../../api/get-post.tsx'
 import {useParams} from 'react-router'
 
 interface PostContentInnerProps {
@@ -44,7 +44,7 @@ function PostContent() {
     if (postId) {
       setError(null)
       setPost(null)
-      getPost(postId)
+      fetchPost(postId)
         .then(setPost)
         .catch((reason: unknown) => {
           if (reason instanceof Error) {

@@ -5,7 +5,7 @@ import MaterialMarkdown from '../markdown/MaterialMarkdown.tsx'
 import Page from '../../types/Page.tsx'
 import PageSkeleton from './PageSkeleton.tsx'
 import Typography from '@mui/material/Typography'
-import {getPage} from '../../api/get-page.tsx'
+import {fetchPage} from '../../api/pages.tsx'
 import {useParams} from 'react-router'
 
 interface PageContentInnerProps {
@@ -39,7 +39,7 @@ function PageContent() {
     if (pageId) {
       setError(null)
       setPage(null)
-      getPage(pageId)
+      fetchPage(pageId)
         .then(setPage)
         .catch((reason: unknown) => {
           if (reason instanceof Error) {

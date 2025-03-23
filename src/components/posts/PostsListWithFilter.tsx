@@ -6,7 +6,7 @@ import PostStub from '../../types/PostStub.tsx'
 import PostsFilterCard from './PostsFilterCard.tsx'
 import PostsList from './PostsList.tsx'
 import Stack from '@mui/material/Stack'
-import {getPosts} from '../../api/get-posts.tsx'
+import {fetchPosts} from '../../api/posts.tsx'
 
 function PostsListWithFilter() {
   const [posts, setPosts] = React.useState<PostStub[]>([]),
@@ -16,7 +16,7 @@ function PostsListWithFilter() {
   React.useEffect(() => {
     setError(null)
     setPosts([])
-    getPosts()
+    fetchPosts()
       .then(setPosts)
       .catch((reason: unknown) => {
         if (reason instanceof Error) {

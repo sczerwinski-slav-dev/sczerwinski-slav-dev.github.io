@@ -8,7 +8,7 @@ import ErrorSnackbar from '../feedback/ErrorSnackbar.tsx'
 import PageStub from '../../types/PageStub.tsx'
 import Stack from '@mui/material/Stack'
 import Toolbar from '@mui/material/Toolbar'
-import {getPages} from '../../api/get-pages.tsx'
+import {fetchPages} from '../../api/pages.tsx'
 import useToggleable from '../../hooks/toggleable.tsx'
 
 function AppScaffold(props: React.PropsWithChildren) {
@@ -18,7 +18,7 @@ function AppScaffold(props: React.PropsWithChildren) {
     [errorSnackbarOpen, setErrorSnackbarOpen] = React.useState(false)
 
   React.useEffect(() => {
-    getPages()
+    fetchPages()
       .then(setPages)
       .catch((reason: unknown) => {
         if (reason instanceof Error) {
