@@ -1,8 +1,7 @@
-interface Page {
-  id: string
-  title: string
+import PageStub from './PageStub.tsx'
+
+interface Page extends PageStub {
   content: string
-  url: string
 }
 
 export default Page

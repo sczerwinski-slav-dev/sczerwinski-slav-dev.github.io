@@ -1,16 +1,7 @@
-import Image from './Image.tsx'
+import PostStub from './PostStub.tsx'
 
-interface Post {
-  id: string
-  title: string
-  abstract: string
-  date: string
+interface Post extends PostStub {
   content: string
-  draft: boolean
-  categories: string[]
-  tags: string[]
-  image: Image | null
-  url: string
 }
 
 export default Post
