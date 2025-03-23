@@ -1,4 +1,5 @@
 import * as React from 'react'
+import Container from '@mui/material/Container'
 import ErrorAlert from '../feedback/ErrorAlert.tsx'
 import MaterialMarkdown from '../markdown/MaterialMarkdown.tsx'
 import Page from '../../types/Page.tsx'
@@ -22,7 +23,7 @@ function PageContentInner(props: PageContentInnerProps) {
   if (page) {
     return (
       <React.Fragment>
-        <Typography variant="h1">{page.title}</Typography>
+        <Typography variant="h1" sx={{mt: 10}}>{page.title}</Typography>
         <MaterialMarkdown markdown={page.content} />
       </React.Fragment>
     )
@@ -49,10 +50,10 @@ function PageContent() {
   }, [pageId])
 
   return (
-    <React.Fragment>
+    <Container maxWidth='lg'>
       <ErrorAlert message={error} />
       <PageContentInner page={page} loading={!page && !error} />
-    </React.Fragment>
+    </Container>
   )
 }
 

@@ -1,8 +1,11 @@
 import * as React from 'react'
+import Container from '@mui/material/Container'
 import ErrorAlert from '../feedback/ErrorAlert.tsx'
 import MaterialMarkdown from '../markdown/MaterialMarkdown.tsx'
 import Post from '../../types/Post.tsx'
+import PostHero from './PostHero.tsx'
 import PostSkeleton from '../posts/PostSkeleton.tsx'
+import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 import {formatDate} from '../../utils/date.tsx'
 import {getPost} from '../../api/get-post.tsx'
@@ -23,7 +26,6 @@ function PostContentInner(props: PostContentInnerProps) {
   if (post) {
     return (
       <React.Fragment>
-        <Typography variant="h1">{post.title}</Typography>
         <Typography sx={{ color: 'text.secondary', mb: 4 }}>
           {formatDate(post.date)}
         </Typography>
@@ -53,10 +55,13 @@ function PostContent() {
   }, [postId])
 
   return (
-    <React.Fragment>
-      <ErrorAlert message={error} />
-      <PostContentInner post={post} loading={!post && !error} />
-    </React.Fragment>
+    <Stack spacing={2} alignItems='center' sx={{width: '100%'}}>
+      <PostHero post={post} />
+      <Container maxWidth='lg'>
+        <ErrorAlert message={error} />
+        <PostContentInner post={post} loading={!post && !error} />
+      </Container>
+    </Stack>
   )
 }
 

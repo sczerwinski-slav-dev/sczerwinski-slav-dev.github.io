@@ -1,5 +1,6 @@
 import * as React from 'react'
 import {extractCategoriesAndTags, filterByCategoriesAndTags} from '../../utils/posts.tsx'
+import Container from '@mui/material/Container'
 import ErrorAlert from '../feedback/ErrorAlert.tsx'
 import PostStub from '../../types/PostStub.tsx'
 import PostsFilterCard from './PostsFilterCard.tsx'
@@ -25,11 +26,13 @@ function PostsListWithFilter() {
   }, [])
 
   return (
-    <Stack direction='column' spacing={2}>
-      <ErrorAlert message={error} />
-      <PostsFilterCard items={extractCategoriesAndTags(posts)} filter={filter} setFilter={setFilter} />
-      <PostsList posts={filterByCategoriesAndTags(posts, filter)} loading={!error && !posts.length} />
-    </Stack>
+    <Container maxWidth='lg'>
+      <Stack direction='column' spacing={2} sx={{mt: 5}}>
+        <ErrorAlert message={error} />
+        <PostsFilterCard items={extractCategoriesAndTags(posts)} filter={filter} setFilter={setFilter} />
+        <PostsList posts={filterByCategoriesAndTags(posts, filter)} loading={!error && !posts.length} />
+      </Stack>
+    </Container>
   )
 }
 
