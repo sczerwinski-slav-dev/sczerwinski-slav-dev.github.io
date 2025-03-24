@@ -1,7 +1,13 @@
 {
   "files": [],
+  "include": ["**/*.tsx"],
   "references": [
     { "path": "./tsconfig.app.json" },
     { "path": "./tsconfig.node.json" }
-  ]
+  ],
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "allowImportingTsExtensions": true,
+    "jsx": "react"
+  }
 }
