@@ -11,6 +11,11 @@ import Toolbar from '@mui/material/Toolbar'
 import {fetchPages} from '../../api/pages.tsx'
 import useToggleable from '../../hooks/toggleable.tsx'
 
+/**
+ * Application scaffold.
+ *
+ * @param {React.PropsWithChildren} props Contents of the application.
+ */
 function AppScaffold(props: React.PropsWithChildren) {
   const [pages, setPages] = React.useState<PageStub[]>([]),
     [drawerOpen, toggleDrawerOpen] = useToggleable(false),

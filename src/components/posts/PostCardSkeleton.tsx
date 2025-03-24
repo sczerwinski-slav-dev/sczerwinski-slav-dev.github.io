@@ -5,6 +5,9 @@ import Skeleton from '@mui/material/Skeleton'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 
+/**
+ * Skeleton of a blog post card being loaded.
+ */
 function PostCardSkeleton() {
   return (
     <Card>

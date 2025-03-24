@@ -12,12 +12,24 @@ function getRotation(expanded: boolean): string {
   return collapsedRotation
 }
 
+/**
+ * "Expand More" button properties.
+ *
+ * @property {string} label Button accessibility label.
+ * @property {boolean} expanded Button expanded state, determining icon rotation.
+ * @property {() => void} onClick Callback executed when the button is clicked.
+ */
 interface ExpandMoreButtonProps {
   label: string
   expanded: boolean
   onClick: () => void
 }
 
+/**
+ * Icon button with "Expand More" icon.
+ *
+ * @param {ExpandMoreButtonProps} props Button properties.
+ */
 function ExpandMoreButton(props: ExpandMoreButtonProps) {
   const {label, expanded, onClick} = props
 

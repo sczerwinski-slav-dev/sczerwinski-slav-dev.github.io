@@ -87,6 +87,11 @@ const
     },
   }
 
+/**
+ * Create application theme.
+ *
+ * @returns Created theme.
+ */
 export function createAppTheme() {
   return createTheme({
     colorSchemes: {

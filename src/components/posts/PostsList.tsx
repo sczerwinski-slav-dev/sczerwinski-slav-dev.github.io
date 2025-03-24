@@ -3,11 +3,22 @@ import PostCard from './PostCard.tsx'
 import PostStub from '../../types/PostStub.tsx'
 import PostsListSkeleton from './PostsListSkeleton.tsx'
 
+/**
+ * Posts list properties.
+ *
+ * @property {PostStub[]} posts Posts or stubs.
+ * @property {boolean} loading Posts loading status.
+ */
 interface PostsListProps {
   posts: PostStub[]
   loading: boolean
 }
 
+/**
+ * List of stubs for blog posts.
+ *
+ * @param {PostsListProps} props Posts list properties.
+ */
 function PostsList(props: PostsListProps) {
   const {posts, loading} = props
 

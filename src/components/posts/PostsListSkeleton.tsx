@@ -3,6 +3,9 @@ import PostCardSkeleton from './PostCardSkeleton.tsx'
 
 const cardsCount = 5
 
+/**
+ * Skeleton of a list of blog posts being loaded.
+ */
 function PostsListSkeleton() {
   return (
     <Grid container spacing={2}>

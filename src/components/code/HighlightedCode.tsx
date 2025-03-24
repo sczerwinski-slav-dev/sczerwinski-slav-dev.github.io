@@ -14,10 +14,20 @@ const languageOverrides = new Map<string, string>([
   ["gradle", "groovy"],
 ])
 
+/**
+ * Highlighted code card properties.
+ *
+ * @property {string} language Code language.
+ */
 interface HighlightedCodeProps {
   language: string
 }
 
+/**
+ * Highlighted code card.
+ *
+ * @param {React.PropsWithChildren<HighlightedCodeProps>} props Highlighted code card properties.
+ */
 function HighlightedCode(props: React.PropsWithChildren<HighlightedCodeProps>) {
   const children = props.children as string[],
     {language} = props,

@@ -1,16 +1,26 @@
 import * as React from 'react'
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
-import Post from '../../types/Post.tsx'
+import PostStub from '../../types/PostStub.tsx'
 import Typography from '@mui/material/Typography'
 import {getImageUrl} from '../../utils/images.tsx'
 import useHeroOverlayColor from '../../hooks/hero-overlay-color.tsx'
 import useHeroTextShadow from '../../hooks/hero-shadow-color.tsx'
 
+/**
+ * Post hero properties.
+ *
+ * @property {PostStub | null} post Post or stub, or null.
+ */
 interface PostHeroProps {
-  post: Post | null
+  post: PostStub | null
 }
 
+/**
+ * Hero of a post page.
+ *
+ * @param {PostHeroProps} props Post hero properties.
+ */
 function PostHero(props: PostHeroProps) {
   const {post} = props,
     overlayColor = useHeroOverlayColor(),

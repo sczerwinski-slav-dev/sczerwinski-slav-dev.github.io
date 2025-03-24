@@ -20,6 +20,9 @@ function ModeIcon(props: ModeIconProps) {
   return (<DarkModeIcon />)
 }
 
+/**
+ * Dark/light mode switching icon button properties.
+ */
 interface ModeIconButtonProps {
   classes?: Partial<IconButtonClasses>
   color?: OverridableStringUnion<
@@ -35,6 +38,11 @@ interface ModeIconButtonProps {
   sx?: SxProps<Theme>
 }
 
+/**
+ * Dark/light mode switching icon button.
+ *
+ * @param {ModeIconButtonProps} props Button properties.
+ */
 function ModeIconButton(props: ModeIconButtonProps) {
   const {mode, setMode} = useColorScheme()
 

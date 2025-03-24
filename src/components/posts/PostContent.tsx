@@ -35,6 +35,9 @@ function PostContentInner(props: PostContentInnerProps) {
   }
 }
 
+/**
+ * Blog post content rendered based on REST API data.
+ */
 function PostContent() {
   const {postId} = useParams(),
     [post, setPost] = React.useState<Post | null>(null),

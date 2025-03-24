@@ -2,6 +2,9 @@ import * as React from 'react'
 import Skeleton from '@mui/material/Skeleton'
 import Typography from '@mui/material/Typography'
 
+/**
+ * Skeleton of a blog post being loaded.
+ */
 function PageSkeleton() {
   return (
     <React.Fragment>

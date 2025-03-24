@@ -10,6 +10,11 @@ function getColor(mode: string | undefined): string {
   return '#ffffff'
 }
 
+/**
+ * Return a stateful CSS style of hero text shadow, based on current color scheme.
+ *
+ * @returns {string} CSS style of hero text shadow.
+ */
 function useHeroTextShadow(): string {
   const {mode} = useColorScheme(),
     color = getColor(mode)

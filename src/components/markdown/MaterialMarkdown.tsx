@@ -185,10 +185,20 @@ const markdownComponents: Components = {
   ul: unorderedList,
 }
 
+/**
+ * Markdown properties.
+ *
+ * @property {string} markdown Markdown text.
+ */
 interface MaterialMarkdownProps {
   markdown: string
 }
 
+/**
+ * Markdown formatted using Material UI components.
+ *
+ * @param {MaterialMarkdownProps} props Markdown properties.
+ */
 function MaterialMarkdown(props: MaterialMarkdownProps) {
   return (
     <ReactMarkdown

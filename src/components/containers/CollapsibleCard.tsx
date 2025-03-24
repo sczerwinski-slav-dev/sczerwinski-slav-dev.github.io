@@ -8,10 +8,20 @@ import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 import useToggleable from '../../hooks/toggleable.tsx'
 
+/**
+ * Collapsible card properties.
+ *
+ * @property caption Caption of the collapsible card.
+ */
 interface CollapsibleCardProps {
   caption: string
 }
 
+/**
+ * Collapsible card.
+ *
+ * @param {React.PropsWithChildren<CollapsibleCardProps>} props Collapsible card properties with children.
+ */
 function CollapsibleCard(props: React.PropsWithChildren<CollapsibleCardProps>) {
   const [expanded, toggleExpanded] = useToggleable(false)
 

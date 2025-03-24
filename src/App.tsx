@@ -16,6 +16,9 @@ import {postsPath} from './config/site.tsx'
 
 const appTheme = createAppTheme()
 
+/**
+ * Root application component.
+ */
 function App() {
   return (
     <ThemeProvider theme={appTheme} defaultMode='dark'>

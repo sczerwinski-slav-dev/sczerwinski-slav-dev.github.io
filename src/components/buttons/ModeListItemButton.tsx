@@ -10,6 +10,9 @@ const buttonLabels = new Map<string, string>([
   ['light', 'Dark mode'],
 ])
 
+/**
+ * Dark/light mode switching list item button properties.
+ */
 interface ModeButtonProps {
   alignItems?: 'flex-start' | 'center';
   autoFocus?: boolean;
@@ -22,6 +25,11 @@ interface ModeButtonProps {
   sx?: SxProps<Theme>;
 }
 
+/**
+ * Dark/light mode switching list item button.
+ *
+ * @param {ModeButtonProps} props Button properties.
+ */
 function ModeListItemButton(props: ModeButtonProps) {
   const {mode, setMode} = useColorScheme()
 

@@ -30,6 +30,9 @@ function PageContentInner(props: PageContentInnerProps) {
   }
 }
 
+/**
+ * Page content rendered based on REST API data.
+ */
 function PageContent() {
   const {pageId} = useParams(),
     [page, setPage] = React.useState<Page | null>(null),

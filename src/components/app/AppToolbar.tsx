@@ -9,11 +9,22 @@ import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
 import {pageTitle} from '../../config/site.tsx'
 
+/**
+ * Application toolbar properties.
+ *
+ * @property {() => void} onMenuClick Callback executed when the menu icon is clicked.
+ * @property {PageStub[]} pages Array of pages or stubs to be linked to from the toolbar buttons.
+ */
 interface AppToolbarProps {
   onMenuClick: () => void
   pages: PageStub[]
 }
 
+/**
+ * Application toolbar, displayed on top of the page.
+ *
+ * @param {AppToolbarProps} props Application toolbar properties.
+ */
 function AppToolbar(props: AppToolbarProps) {
   return (
     <Toolbar>

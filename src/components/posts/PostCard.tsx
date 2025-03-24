@@ -11,10 +11,20 @@ import {formatDate} from '../../utils/date.tsx'
 import {getThumbnailUrl} from '../../utils/images.tsx'
 import {postsPath} from '../../config/site.tsx'
 
+/**
+ * Post stub card properties.
+ *
+ * @property {PostStub} post Post or stub.
+ */
 interface PostCardProps {
   post: PostStub
 }
 
+/**
+ * Post stub card displayed in {@link PostsList}.
+ *
+ * @param {PostCardProps} props Post stub card properties.
+ */
 function PostCard(props: PostCardProps) {
   const {post} = props
 

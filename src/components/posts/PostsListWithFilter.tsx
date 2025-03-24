@@ -8,6 +8,9 @@ import PostsList from './PostsList.tsx'
 import Stack from '@mui/material/Stack'
 import {fetchPosts} from '../../api/posts.tsx'
 
+/**
+ * List of stubs for blog posts with posts filter.
+ */
 function PostsListWithFilter() {
   const [posts, setPosts] = React.useState<PostStub[]>([]),
     [filter, setFilter] = React.useState<string[]>([]),

@@ -2,12 +2,24 @@ import Chip from '@mui/material/Chip'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 
+/**
+ * Posts filter properties.
+ *
+ * @property {string[]} items All filter items (categories and tags).
+ * @property {string[]} filter Selected filter items.
+ * @property {(string[]) => void} setFilter Callback executed when the selected filter items change.
+ */
 export interface PostsFilterProps {
   items: string[]
   filter: string[]
   setFilter: (filter: string[]) => void
 }
 
+/**
+ * Posts filter.
+ *
+ * @param {PostsFilterProps} props Posts filter properties.
+ */
 function PostsFilter(props: PostsFilterProps) {
   const {items, filter, setFilter} = props,
     availableItems = items
