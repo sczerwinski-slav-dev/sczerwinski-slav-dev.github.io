@@ -1,10 +1,10 @@
-import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import IconButton from '@mui/material/IconButton'
 import MenuIcon from '@mui/icons-material/Menu'
 import ModeIconButton from '../buttons/ModeIconButton.tsx'
 import {NavLink} from 'react-router'
 import PageStub from '../../types/PageStub.tsx'
+import Stack from '@mui/material/Stack'
 import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
 import {pageTitle} from '../../config/site.tsx'
@@ -45,7 +45,7 @@ function AppToolbar(props: AppToolbarProps) {
       >
         {pageTitle}
       </Typography>
-      <Box sx={{display: {sm: 'block', xs: 'none'}}}>
+      <Stack direction='row' spacing={2} sx={{display: {sm: 'block', xs: 'none'}}}>
         {props.pages.map((pageStub) => (
           <Button component={NavLink} to={`/${pageStub.id}`} key={pageStub.id} sx={{color: '#fff'}}>
             {pageStub.title}
@@ -54,9 +54,8 @@ function AppToolbar(props: AppToolbarProps) {
         <ModeIconButton
           color="inherit"
           aria-label="Swith mode"
-          edge="end"
-          sx={{ml: 2}} />
-      </Box>
+          edge="end" />
+      </Stack>
     </Toolbar>
   )
 }
