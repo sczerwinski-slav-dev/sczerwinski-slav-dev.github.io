@@ -13,11 +13,13 @@ const drawerWidth = 180
  *
  * @property {() => void} onClick Callback executed when the drawer (not menu item!) is clicked.
  * @property {PageStub[]} pages Array of pages or stubs to be referenced in the drawer menu.
+ * @property {boolean} loading Pages loading status.
  * @property {boolean} open Drawer open state.
  */
 interface AppDrawerProps {
   onClick: () => void
   pages: PageStub[]
+  loading: boolean
   open: boolean
 }
 
@@ -43,7 +45,7 @@ function AppDrawer(props: AppDrawerProps) {
       <Box onClick={props.onClick} sx={{textAlign: 'center'}}>
         <Typography variant="h6" sx={{my: 2}}>{pageTitle}</Typography>
         <Divider />
-        <AppDrawerMenu pages={props.pages} />
+        <AppDrawerMenu pages={props.pages} loading={props.loading} />
       </Box>
     </Drawer>
   )

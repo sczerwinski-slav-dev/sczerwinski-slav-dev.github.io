@@ -9,6 +9,7 @@ import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 import {fetchPost} from '../../api/posts.tsx'
 import {formatDate} from '../../utils/date.tsx'
+import useAsync from '../../hooks/async.tsx'
 import {useParams} from 'react-router'
 
 interface PostContentInnerProps {
@@ -40,29 +41,20 @@ function PostContentInner(props: PostContentInnerProps) {
  */
 function PostContent() {
   const {postId} = useParams(),
-    [post, setPost] = React.useState<Post | null>(null),
-    [error, setError] = React.useState<string | null>(null)
-
-  React.useEffect(() => {
-    if (postId) {
-      setError(null)
-      setPost(null)
-      fetchPost(postId)
-        .then(setPost)
-        .catch((reason: unknown) => {
-          if (reason instanceof Error) {
-            setError(reason.message)
-          }
-        })
-    }
-  }, [postId])
+    fetchPostCallback = React.useCallback(() => {
+      if (postId) {
+        return fetchPost(postId)
+      }
+      return Promise.reject(Error('Post ID not provided'))
+    }, [postId]),
+    [post, error, pending] = useAsync<Post | null>(fetchPostCallback, null)
 
   return (
     <Stack spacing={2} alignItems='center' sx={{width: '100%'}}>
       <PostHero post={post} />
       <Container maxWidth='lg'>
         <ErrorAlert message={error} />
-        <PostContentInner post={post} loading={!post && !error} />
+        <PostContentInner post={post} loading={pending} />
       </Container>
     </Stack>
   )

@@ -9,6 +9,7 @@ import PageStub from '../../types/PageStub.tsx'
 import Stack from '@mui/material/Stack'
 import Toolbar from '@mui/material/Toolbar'
 import {fetchPages} from '../../api/pages.tsx'
+import useAsync from '../../hooks/async.tsx'
 import useToggleable from '../../hooks/toggleable.tsx'
 
 /**
@@ -17,31 +18,19 @@ import useToggleable from '../../hooks/toggleable.tsx'
  * @param {React.PropsWithChildren} props Contents of the application.
  */
 function AppScaffold(props: React.PropsWithChildren) {
-  const [pages, setPages] = React.useState<PageStub[]>([]),
+  const [pages, error, pending] = useAsync<PageStub[]>(fetchPages, []),
     [drawerOpen, toggleDrawerOpen] = useToggleable(false),
-    [error, setError] = React.useState<string | null>(null),
     [errorSnackbarOpen, setErrorSnackbarOpen] = React.useState(false)
-
-  React.useEffect(() => {
-    fetchPages()
-      .then(setPages)
-      .catch((reason: unknown) => {
-        if (reason instanceof Error) {
-          setError(reason.message)
-          setErrorSnackbarOpen(true)
-        }
-      })
-  }, [])
 
   return (
     <Box sx={{display: 'flex'}}>
       <AppBar component='nav'>
         <Container maxWidth='lg'>
-          <AppToolbar onMenuClick={toggleDrawerOpen} pages={pages} />
+          <AppToolbar onMenuClick={toggleDrawerOpen} pages={pages} loading={pending} />
         </Container>
       </AppBar>
       <nav>
-        <AppDrawer open={drawerOpen} onClick={toggleDrawerOpen} pages={pages} />
+        <AppDrawer open={drawerOpen} onClick={toggleDrawerOpen} pages={pages} loading={pending} />
       </nav>
       <Stack component='main' alignItems='center' sx={{mb: 5, width: '100%'}}>
         <Toolbar />

@@ -6,6 +6,7 @@ import Page from '../../types/Page.tsx'
 import PageSkeleton from './PageSkeleton.tsx'
 import Typography from '@mui/material/Typography'
 import {fetchPage} from '../../api/pages.tsx'
+import useAsync from '../../hooks/async.tsx'
 import {useParams} from 'react-router'
 
 interface PageContentInnerProps {
@@ -35,27 +36,18 @@ function PageContentInner(props: PageContentInnerProps) {
  */
 function PageContent() {
   const {pageId} = useParams(),
-    [page, setPage] = React.useState<Page | null>(null),
-    [error, setError] = React.useState<string | null>(null)
-
-  React.useEffect(() => {
-    if (pageId) {
-      setError(null)
-      setPage(null)
-      fetchPage(pageId)
-        .then(setPage)
-        .catch((reason: unknown) => {
-          if (reason instanceof Error) {
-            setError(reason.message)
-          }
-        })
-    }
-  }, [pageId])
+    fetchPageCallback = React.useCallback(() => {
+      if (pageId) {
+        return fetchPage(pageId)
+      }
+      return Promise.reject(Error('Page ID not provided'))
+    }, [pageId]),
+    [page, error, pending] = useAsync<Page | null>(fetchPageCallback, null)
 
   return (
     <Container maxWidth='lg'>
       <ErrorAlert message={error} />
-      <PageContentInner page={page} loading={!page && !error} />
+      <PageContentInner page={page} loading={pending} />
     </Container>
   )
 }

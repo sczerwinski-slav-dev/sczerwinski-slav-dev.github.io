@@ -1,3 +1,4 @@
+import AppDrawerMenuSkeleton from './AppDrawerMenuSkeleton.tsx'
 import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
 import ListItemButton from '@mui/material/ListItemButton'
@@ -10,9 +11,11 @@ import PageStub from '../../types/PageStub.tsx'
  * Drawer menu properties.
  *
  * @property {PageStub[]} pages Array of pages or stubs to be referenced in the drawer menu.
+ * @property {boolean} loading Pages loading status.
  */
 interface AppDrawerMenuProps {
   pages: PageStub[]
+  loading: boolean
 }
 
 /**
@@ -21,6 +24,9 @@ interface AppDrawerMenuProps {
  * @param {AppDrawerMenuProps} props Drawer menu properties.
  */
 function AppDrawerMenu(props: AppDrawerMenuProps) {
+  if (props.loading) {
+    return <AppDrawerMenuSkeleton />
+  }
   return (
     <List>
       {props.pages.map((pageStub) => (

@@ -1,10 +1,8 @@
-import Button from '@mui/material/Button'
+import AppToolbarMenu from './AppToolbarMenu.tsx'
 import IconButton from '@mui/material/IconButton'
 import MenuIcon from '@mui/icons-material/Menu'
-import ModeIconButton from '../buttons/ModeIconButton.tsx'
 import {NavLink} from 'react-router'
 import PageStub from '../../types/PageStub.tsx'
-import Stack from '@mui/material/Stack'
 import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
 import {pageTitle} from '../../config/site.tsx'
@@ -14,10 +12,12 @@ import {pageTitle} from '../../config/site.tsx'
  *
  * @property {() => void} onMenuClick Callback executed when the menu icon is clicked.
  * @property {PageStub[]} pages Array of pages or stubs to be linked to from the toolbar buttons.
+ * @property {boolean} loading Pages loading status.
  */
 interface AppToolbarProps {
   onMenuClick: () => void
   pages: PageStub[]
+  loading: boolean
 }
 
 /**
@@ -45,17 +45,7 @@ function AppToolbar(props: AppToolbarProps) {
       >
         {pageTitle}
       </Typography>
-      <Stack direction='row' spacing={2} sx={{display: {sm: 'block', xs: 'none'}}}>
-        {props.pages.map((pageStub) => (
-          <Button component={NavLink} to={`/${pageStub.id}`} key={pageStub.id} sx={{color: '#fff'}}>
-            {pageStub.title}
-          </Button>
-        ))}
-        <ModeIconButton
-          color="inherit"
-          aria-label="Swith mode"
-          edge="end" />
-      </Stack>
+      <AppToolbarMenu pages={props.pages} loading={props.loading} />
     </Toolbar>
   )
 }
