@@ -12,6 +12,9 @@ type PostsFilterCardProps = PostsFilterProps
  * @param {PostsFilterCardProps} props Posts filter card properties.
  */
 function PostsFilterCard(props: PostsFilterCardProps) {
+  if (!props.items.length) {
+    return <></>
+  }
   return (
     <CollapsibleCard caption='Filter posts'>
       <PostsFilter {...props} />
