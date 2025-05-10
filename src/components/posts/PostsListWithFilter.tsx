@@ -1,4 +1,3 @@
-import * as React from 'react'
 import {extractCategoriesAndTags, filterByCategoriesAndTags} from '../../utils/posts.tsx'
 import Container from '@mui/material/Container'
 import ErrorAlert from '../feedback/ErrorAlert.tsx'
@@ -8,20 +7,29 @@ import PostsList from './PostsList.tsx'
 import Stack from '@mui/material/Stack'
 import {fetchPosts} from '../../api/posts.tsx'
 import useAsync from '../../hooks/async.tsx'
+import useItems from '../../hooks/items.tsx'
 
 /**
  * List of stubs for blog posts with posts filter.
  */
 function PostsListWithFilter() {
   const [posts, error, pending] = useAsync<PostStub[]>(fetchPosts, []),
-    [filter, setFilter] = React.useState<string[]>([])
+    [selectedFilterItems, selectFilterItem, deselectFilterItem] = useItems<string>([])
 
   return (
     <Container maxWidth='lg'>
       <Stack direction='column' spacing={2} sx={{mt: 5}}>
         <ErrorAlert message={error} />
-        <PostsFilterCard items={extractCategoriesAndTags(posts)} filter={filter} setFilter={setFilter} />
-        <PostsList posts={filterByCategoriesAndTags(posts, filter)} loading={pending} />
+        <PostsFilterCard
+          allItems={extractCategoriesAndTags(posts)}
+          selectedItems={selectedFilterItems}
+          onSelectItem={selectFilterItem}
+          onDeselectItem={deselectFilterItem}
+        />
+        <PostsList
+          posts={filterByCategoriesAndTags(posts, selectedFilterItems)}
+          loading={pending}
+        />
       </Stack>
     </Container>
   )

@@ -1,10 +1,22 @@
-import PostsFilter, {PostsFilterProps} from './PostsFilter.tsx'
 import CollapsibleCard from '../containers/CollapsibleCard.tsx'
+import PostsFilterChips from './PostsFilterChips.tsx'
+import Stack from '@mui/material/Stack'
+import Typography from '@mui/material/Typography'
 
 /**
  * Posts filter card properties.
+ *
+ * @property {string[]} allItems All filter items (categories and tags).
+ * @property {string[]} selectedItems Selected filter items.
+ * @property {(string) => void} onSelectItem Callback executed when a filter item is selected.
+ * @property {(string) => void} onSelectItem Callback executed when a filter item is deselected.
  */
-type PostsFilterCardProps = PostsFilterProps
+interface PostsFilterCardProps {
+  allItems: string[]
+  selectedItems: string[]
+  onSelectItem: (item: string) => void
+  onDeselectItem: (item: string) => void
+}
 
 /**
  * Posts filter card.
@@ -12,12 +24,22 @@ type PostsFilterCardProps = PostsFilterProps
  * @param {PostsFilterCardProps} props Posts filter card properties.
  */
 function PostsFilterCard(props: PostsFilterCardProps) {
-  if (!props.items.length) {
+  if (!props.allItems.length) {
     return <></>
   }
+
+  const {allItems, selectedItems, onSelectItem, onDeselectItem} = props,
+    notSelectedItems = allItems
+      .filter((item) => !selectedItems.find((value) => value === item))
+      .sort()
+
   return (
     <CollapsibleCard caption='Filter posts'>
-      <PostsFilter {...props} />
+      <Stack direction='column' spacing={1}>
+        <PostsFilterChips items={notSelectedItems} onItemClick={onSelectItem} />
+        <Typography variant='overline'>Selection:</Typography>
+        <PostsFilterChips items={selectedItems} onItemClick={onDeselectItem} />
+      </Stack>
     </CollapsibleCard>
   )
 }
