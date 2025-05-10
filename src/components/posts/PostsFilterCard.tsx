@@ -1,4 +1,5 @@
 import CollapsibleCard from '../containers/CollapsibleCard.tsx'
+import FilterListIcon from '@mui/icons-material/FilterList'
 import PostsFilterChips from './PostsFilterChips.tsx'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
@@ -34,7 +35,7 @@ function PostsFilterCard(props: PostsFilterCardProps) {
       .sort()
 
   return (
-    <CollapsibleCard caption='Filter posts'>
+    <CollapsibleCard caption='Filter posts' icon={FilterListIcon}>
       <Stack direction='column' spacing={1}>
         <PostsFilterChips items={notSelectedItems} onItemClick={onSelectItem} />
         <Typography variant='overline'>Selection:</Typography>

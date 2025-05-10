@@ -4,7 +4,9 @@ import CardActions from '@mui/material/CardActions'
 import CardContent from '@mui/material/CardContent'
 import Collapse from '@mui/material/Collapse'
 import ExpandMoreButton from '../buttons/ExpandMoreButton.tsx'
+import {OverridableComponent} from '@mui/material/OverridableComponent'
 import Stack from '@mui/material/Stack'
+import {SvgIconTypeMap} from '@mui/material/SvgIcon/SvgIcon'
 import Typography from '@mui/material/Typography'
 import useToggleable from '../../hooks/toggleable.tsx'
 
@@ -15,6 +17,7 @@ import useToggleable from '../../hooks/toggleable.tsx'
  */
 interface CollapsibleCardProps {
   caption: string
+  icon?: OverridableComponent<SvgIconTypeMap>
 }
 
 /**
@@ -23,22 +26,29 @@ interface CollapsibleCardProps {
  * @param {React.PropsWithChildren<CollapsibleCardProps>} props Collapsible card properties with children.
  */
 function CollapsibleCard(props: React.PropsWithChildren<CollapsibleCardProps>) {
-  const [expanded, toggleExpanded] = useToggleable(false)
+  const
+    {caption, icon: Icon, children} = props,
+    [expanded, toggleExpanded] = useToggleable(false)
 
   return (
     <Card>
       <CardActions>
-        <Stack direction='row' width='100%' sx={{ml: 1}}>
-          <Typography gutterBottom variant='h6'>{props.caption}</Typography>
+        <Stack direction='row' width='100%' sx={{alignItems: 'center', mx: 1}}>
+          <Stack direction='row' spacing={1} sx={{alignItems: 'center'}}>
+            {Icon && <Icon />}
+            <Typography gutterBottom variant='h6'>{caption}</Typography>
+          </Stack>
           <ExpandMoreButton
             expanded={expanded}
             onClick={toggleExpanded}
-            label="expand filters" />
+            label="expand filters"
+            edge='end'
+          />
         </Stack>
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          {props.children}
+          {children}
         </CardContent>
       </Collapse>
     </Card>

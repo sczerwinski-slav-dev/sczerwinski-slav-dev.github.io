@@ -23,6 +23,7 @@ interface ExpandMoreButtonProps {
   label: string
   expanded: boolean
   onClick: () => void
+  edge?: 'start' | 'end' | false
 }
 
 /**
@@ -31,11 +32,12 @@ interface ExpandMoreButtonProps {
  * @param {ExpandMoreButtonProps} props Button properties.
  */
 function ExpandMoreButton(props: ExpandMoreButtonProps) {
-  const {label, expanded, onClick} = props
+  const {label, expanded, onClick, edge} = props
 
   return (
     <IconButton
       onClick={onClick}
+      edge={edge}
       aria-label={label}
       aria-expanded={expanded}
       sx={(theme) => ({
